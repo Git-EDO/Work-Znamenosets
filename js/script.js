@@ -75,8 +75,10 @@ window.addEventListener('scroll', () => {
   let windowScrollTop = window.pageYOffset;
   if (windowScrollTop > 70) {
     header.style.backgroundColor = 'var(--dark-green)';
+    header.style.boxShadow = '2px 2px 8px rgba(0,0,0,0.2)'
   } else {
     header.style.backgroundColor = 'transparent';
+    header.style.boxShadow = 'none';
   }
 })
 
