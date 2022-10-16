@@ -6,16 +6,44 @@ const menu = document.querySelector('.burger-menu')
 const body = document.querySelector('body')
 const header = document.querySelector('header')
 
+const lockPaddingEls =  document.querySelectorAll('.lock-padding');
+
 openMenu.addEventListener('click', () => {
+  bodyLock()
   menu.classList.add('active')
-  body.classList.add('lock')
 })
 
 closeMenu.addEventListener('click', () => {
+  bodyUnlock()
   menu.classList.remove('active')
-  body.classList.remove('lock')
 })
 
+document.addEventListener('click', (e) => {
+  if(menu.classList.contains('active') && !e.target.closest('.burger-menu') && !e.target.closest('.header-burger')) {
+    bodyUnlock()
+    menu.classList.remove('active')
+  }
+})
+
+// Body lock
+
+function bodyLock() {
+  const lockPaddingValue = window.innerWidth - document.querySelector('body').offsetWidth + 'px';
+
+  lockPaddingEls.forEach(element => {
+    element.style.paddingRight = lockPaddingValue;
+  });
+
+  body.classList.add('lock');
+}
+
+function bodyUnlock() {
+  lockPaddingEls.forEach(element => {
+    element.style.paddingRight = 0;
+  })
+
+  body.classList.remove('lock')
+}
 
 // Управление попапом
 
@@ -25,13 +53,20 @@ const closePopup = document.querySelector('.close-popup')
 
 openPopup.addEventListener('click', (e) => {
   e.preventDefault()
+  bodyLock()
   popup.classList.add('active')
-  body.classList.add('lock')
 })
 
 closePopup.addEventListener('click', () => {
+  bodyUnlock()
   popup.classList.remove('active')
-  body.classList.remove('lock')
+})
+
+popup.addEventListener('click', (e) => {
+  if(!e.target.closest('.popup-body')) {
+    bodyUnlock()
+    popup.classList.remove('active')
+  }
 })
 
 // Управление цветом хэдера при скролле
@@ -55,8 +90,8 @@ const ukScroll = document.querySelectorAll('.uk')
 zmamenosetsScroll.forEach(link => {
   link.addEventListener ('click', function(e) {
     e.preventDefault();
+    bodyUnlock()
     menu.classList.remove('active')
-    body.classList.remove('lock')
     setTimeout(() => {
       const main = document.querySelector('.main-title');
       main.scrollIntoView({block: "start", behavior: "smooth"});
@@ -66,8 +101,8 @@ zmamenosetsScroll.forEach(link => {
 beriaScroll.forEach(link => {
   link.addEventListener ('click', function(e) {
     e.preventDefault();
+    bodyUnlock()
     menu.classList.remove('active')
-    body.classList.remove('lock')
     setTimeout(() => {
     const classes = document.querySelector('.classes-speaks');
     classes.scrollIntoView({block: "start", behavior: "smooth"});
@@ -77,8 +112,8 @@ beriaScroll.forEach(link => {
 ukScroll.forEach(link => {
   link.addEventListener ('click', function(e) {
     e.preventDefault();
+    bodyUnlock()
     menu.classList.remove('active')
-    body.classList.remove('lock')
     setTimeout(() => {
     const ukWar = document.querySelector('.uk-war');
     ukWar.scrollIntoView({block: "start", behavior: "smooth"});
