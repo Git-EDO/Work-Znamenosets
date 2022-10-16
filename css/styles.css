@@ -840,6 +840,13 @@ form input::placeholder {
     font-size: 26px;
     line-height: 35px;
   }
+  .video-row iframe:not(:first-child) {
+    margin-left: 20px;
+  }
+  .video-row iframe {
+    flex: 0 0 43%;
+    height: 250px;
+  }
 
   .book-btn:not(:first-child) {
     margin-top: 30px;
