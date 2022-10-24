@@ -94,7 +94,7 @@ li {
 }
 .header-burger {
   cursor: pointer;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -138,7 +138,7 @@ li {
 }
 
 .main-page-bg {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -151,7 +151,7 @@ li {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 
 .main-page-bg-wrapper img {
@@ -197,7 +197,11 @@ li {
   box-shadow: 0 0 100px rgba(0,0,0,0.85);
 }
 .menu-list {
-  margin-top: 46px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+
+  margin-right: 20px;
 }
 .menu-list li {
   font-family: 'Playfair Display';
@@ -205,13 +209,27 @@ li {
   font-weight: 500;
   font-size: 24px;
   line-height: 32px;
-  transition: color 0.5s ease;
+  transition: 0.5s ease;
+
+  max-width: 200px;
 }
 .menu-list li:hover {
   color: var(--yellow);
 }
 .menu-list li:not(:first-child) {
-  margin-top: 30px;
+  margin-left: 20px;
+}
+.menu-list li:nth-child(4) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px 20px;
+  border: 1px solid #fff;
+}
+.menu-list li:nth-child(4):hover {
+  background-color: var(--yellow);
+  color: #fff;
 }
 .menu-footer {
   display: flex;
@@ -374,17 +392,38 @@ h1 {
 .video-row {
   margin-top: 35px;
 
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  row-gap: 30px;
+  column-gap: 35px;
 }
-.video-row iframe:not(:first-child) {
-  margin-left: 30px;
+.film-item {
+  position: relative;
+  aspect-ratio: 1.86/1;
+  pointer-events: none;
 }
-.video-row iframe {
-  flex: 0 0 48%;
-  height: 300px;
+.film-item.available {
+  pointer-events: inherit;
+  cursor: pointer;
 }
+.film-item.available::after {
+  position: absolute;
+  content: url('../img/teas-covers/play.png');
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.film-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 
 .classes-speaks-buttons {
   margin-top: 90px;
@@ -478,9 +517,8 @@ h1 {
 .video-new {
   flex: 0 0 55%;
 }
-.video-new iframe {
-  width: 100%;
-  height: 300px;
+.video-new .new-item {
+  aspect-ratio: 1.86/1;
   padding-right: 30px;
 }
 .new-text {
@@ -505,8 +543,6 @@ h1 {
 .section-title {
 }
 .classes-speaks-title {
-}
-.video-row {
 }
 
 
@@ -842,13 +878,6 @@ form input::placeholder {
     font-size: 26px;
     line-height: 35px;
   }
-  .video-row iframe:not(:first-child) {
-    margin-left: 20px;
-  }
-  .video-row iframe {
-    flex: 0 0 43%;
-    height: 250px;
-  }
 
   .book-btn:not(:first-child) {
     margin-top: 30px;
@@ -1150,14 +1179,6 @@ form input::placeholder {
   }
   .classes-speaks-buttons .btn {
     width: 280px;
-  }
-  .video-row iframe:not(:first-child) {
-    margin-left: 0px;
-    margin-top: 20px;
-  }
-  .video-row iframe {
-    flex: 0 0 260px;
-    height: 200px;
   }
   .popup-body {
     width: 100vw;

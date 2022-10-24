@@ -8,22 +8,22 @@ const header = document.querySelector('header')
 
 const lockPaddingEls =  document.querySelectorAll('.lock-padding');
 
-openMenu.addEventListener('click', () => {
-  bodyLock()
-  menu.classList.add('active')
-})
+// openMenu.addEventListener('click', () => {
+//   bodyLock()
+//   menu.classList.add('active')
+// })
 
-closeMenu.addEventListener('click', () => {
-  bodyUnlock()
-  menu.classList.remove('active')
-})
+// closeMenu.addEventListener('click', () => {
+//   bodyUnlock()
+//   menu.classList.remove('active')
+// })
 
-document.addEventListener('click', (e) => {
-  if(menu.classList.contains('active') && !e.target.closest('.burger-menu') && !e.target.closest('.header-burger')) {
-    bodyUnlock()
-    menu.classList.remove('active')
-  }
-})
+// document.addEventListener('click', (e) => {
+//   if(menu.classList.contains('active') && !e.target.closest('.burger-menu') && !e.target.closest('.header-burger')) {
+//     bodyUnlock()
+//     menu.classList.remove('active')
+//   }
+// })
 
 // Body lock
 
