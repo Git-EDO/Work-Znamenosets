@@ -1,72 +1,62 @@
 // Управление бургер-меню
 
 const openMenu = document.querySelector('.header-burger')
-const closeMenu = document.querySelector('.burger-menu-header')
 const menu = document.querySelector('.burger-menu')
 const body = document.querySelector('body')
 const header = document.querySelector('header')
 
 const lockPaddingEls =  document.querySelectorAll('.lock-padding');
 
-// openMenu.addEventListener('click', () => {
-//   bodyLock()
-//   menu.classList.add('active')
-// })
-
-// closeMenu.addEventListener('click', () => {
-//   bodyUnlock()
-//   menu.classList.remove('active')
-// })
-
-// document.addEventListener('click', (e) => {
-//   if(menu.classList.contains('active') && !e.target.closest('.burger-menu') && !e.target.closest('.header-burger')) {
-//     bodyUnlock()
-//     menu.classList.remove('active')
-//   }
-// })
+openMenu.addEventListener('click', () => {
+  bodyLock()
+  menu.classList.toggle('active')
+})
 
 // Body lock
 
 function bodyLock() {
+
   const lockPaddingValue = window.innerWidth - document.querySelector('body').offsetWidth + 'px';
 
-  lockPaddingEls.forEach(element => {
-    element.style.paddingRight = lockPaddingValue;
-  });
+  if(body.classList.contains('lock')) {
+    body.classList.remove('lock');
+    lockPaddingEls.forEach(element => {
+      element.style.paddingRight = 0
+    })
+  } else {
+    body.classList.add('lock');
 
-  body.classList.add('lock');
-}
-
-function bodyUnlock() {
-  lockPaddingEls.forEach(element => {
-    element.style.paddingRight = 0;
-  })
-
-  body.classList.remove('lock')
+    lockPaddingEls.forEach(element => {
+      element.style.paddingRight = lockPaddingValue
+    })
+  }
 }
 
 // Управление попапом
 
 const popup = document.querySelector('.popup')
-const openPopup = document.querySelector('.footer-btn')
+const openPopupBtns = document.querySelectorAll('.support-btn')
 const closePopup = document.querySelector('.close-popup')
 
-openPopup.addEventListener('click', (e) => {
-  e.preventDefault()
-  bodyLock()
-  popup.classList.add('active')
-})
-
-closePopup.addEventListener('click', () => {
-  bodyUnlock()
-  popup.classList.remove('active')
+openPopupBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault()
+    bodyLock()
+    popup.classList.add('active')
+  })
 })
 
 popup.addEventListener('click', (e) => {
   if(!e.target.closest('.popup-body')) {
-    bodyUnlock()
+    bodyLock()
     popup.classList.remove('active')
   }
+})
+
+closePopup.addEventListener('click', (e) => {
+  e.preventDefault()
+  bodyLock()
+  popup.classList.remove('active')
 })
 
 // Управление цветом хэдера при скролле
@@ -92,7 +82,7 @@ const ukScroll = document.querySelectorAll('.uk')
 zmamenosetsScroll.forEach(link => {
   link.addEventListener ('click', function(e) {
     e.preventDefault();
-    bodyUnlock()
+    bodyLock()
     menu.classList.remove('active')
     setTimeout(() => {
       const main = document.querySelector('.main-title');
@@ -103,7 +93,7 @@ zmamenosetsScroll.forEach(link => {
 beriaScroll.forEach(link => {
   link.addEventListener ('click', function(e) {
     e.preventDefault();
-    bodyUnlock()
+    bodyLock()
     menu.classList.remove('active')
     setTimeout(() => {
     const classes = document.querySelector('.classes-speaks');
@@ -114,7 +104,7 @@ beriaScroll.forEach(link => {
 ukScroll.forEach(link => {
   link.addEventListener ('click', function(e) {
     e.preventDefault();
-    bodyUnlock()
+    bodyLock()
     menu.classList.remove('active')
     setTimeout(() => {
     const ukWar = document.querySelector('.uk-war');
@@ -122,3 +112,31 @@ ukScroll.forEach(link => {
   }, 550)
 });
 });
+
+const footerZmamenosetsScroll = document.querySelectorAll('.footer-znamenosets')
+const footerBeriaScroll = document.querySelectorAll('.footer-beria')
+const footerUkScroll = document.querySelectorAll('.footer-uk')
+
+footerZmamenosetsScroll.forEach(btn => {
+  btn.addEventListener ('click', function(e) {
+    e.preventDefault();
+      const main = document.querySelector('.main-title');
+      main.scrollIntoView({block: "start", behavior: "smooth"});
+});
+})
+
+footerBeriaScroll.forEach(btn => {
+  btn.addEventListener ('click', function(e) {
+    e.preventDefault();
+    const classes = document.querySelector('.classes-speaks');
+    classes.scrollIntoView({block: "start", behavior: "smooth"});
+});
+})
+
+footerUkScroll.forEach(btn => {
+  btn.addEventListener ('click', function(e) {
+    e.preventDefault();
+    const ukWar = document.querySelector('.uk-war');
+    ukWar.scrollIntoView({block: "start", behavior: "smooth"});
+});
+})

@@ -77,8 +77,13 @@ li {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   padding: 0 15px;
+}
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 .header-lang-link {
   font-family: 'Playfair Display';
@@ -137,6 +142,73 @@ li {
   left: 0;
 }
 
+.burger-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: var(--dark-green);
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url('../img/books/mobile-frame.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+
+  display: none;
+  transform: translateX(100%);
+}
+
+.burger-menu-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.burger-menu-list li {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  color: #FFFFFF;
+
+  transition: 0.5s ease;
+}
+.burger-menu-list li:hover {
+  color: var(--yellow)
+}
+.burger-menu-list li:not(:first-child) {
+  margin-top: 20px;
+}
+.burger-menu-list li:last-child {
+  margin-top: 50px;
+}
+.znamenosets {
+}
+.beria {
+}
+.uk {
+}
+.mobile-support {
+  padding: 10px 20px;
+  border: 1px solid #fff;
+
+  transition: 0.5s ease;
+}
+.mobile-support:hover {
+  background: var(--yellow);
+  color: #fff;
+}
+.burger-menu-footer {
+  margin-top: 60px;
+}
+
 .main-page-bg {
   position: fixed;
   top: 0;
@@ -179,39 +251,18 @@ li {
   background: var(--main-page-gradient);
 }
 
-.burger-menu {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 45vw;
-  background-color: #002702;
-  padding: 113px 160px 58px 73px;
-  transform: translateX(100%);
-
-  z-index: 1300;
-  transition: 0.5s ease;
-}
-.burger-menu.active {
-  transform: translateX(0);
-
-  box-shadow: 0 0 100px rgba(0,0,0,0.85);
-}
 .menu-list {
   display: flex;
   justify-items: center;
   align-items: center;
-
-  margin-right: 20px;
 }
 .menu-list li {
   font-family: 'Playfair Display';
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 18px;
   line-height: 32px;
   transition: 0.5s ease;
-
-  max-width: 200px;
 }
 .menu-list li:hover {
   color: var(--yellow);
@@ -296,36 +347,6 @@ li {
   color: var(--yellow);
 }
 
-.burger-menu-header {
-  position: relative;
-  width: 38px;
-  height: 28px;
-  cursor: pointer;
-}
-.burger-menu-header:hover::before,
-.burger-menu-header:hover:after {
-  background-color: var(--yellow);
-}
-
-.burger-menu-header:before, 
-.burger-menu-header:after {
-  content: '';
-  width: 100%;
-  height: 2px;
-  background-color: #fff;
-  position: absolute;
-  transition: 0.5s ease;
-}
-.burger-menu-header:before {
-  top: 0;
-  left: 0;
-  transform: rotate(45deg);
-} 
-.burger-menu-header:after {
-  top: 0;
-  left: 0;
-  transform: rotate(-45deg);
-}
 
 .main-title {
   padding-top: 134px;
@@ -423,6 +444,26 @@ h1 {
   object-fit: cover;
   display: block;
 }
+.teaser-item-release-date {
+  position: absolute;
+  top: 40px;
+  right: 5px;
+
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 125%;
+  text-shadow: 2px 2px 0px #000000;
+}
+.film-item-release-date {
+  position: absolute;
+  bottom: 20px;
+  right: 5px;
+
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 125%;
+  text-shadow: 2px 2px 0px #000000;
+}
 
 
 .classes-speaks-buttons {
@@ -519,11 +560,18 @@ h1 {
 }
 .video-new .new-item {
   aspect-ratio: 1.86/1;
-  padding-right: 30px;
+}
+.video-new .new-item img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 .new-text {
   display: flex;
   flex-direction: column;
+
+  margin-left: 30px;
 }
 .new-subtitle {
   font-family: 'Montserrat';
@@ -658,13 +706,16 @@ h1 {
 
   visibility: hidden;
   opacity: 0;
-  transform: scale(0);
   transition: 0.5s ease;
   z-index: 3000;
+
+  transition: 0.5s ease;
 }
 .popup.active {
   visibility: visible;
   opacity: 1;
+}
+.popup.active .popup-body{
   transform: scale(1);
 }
 .popup-content {
@@ -678,6 +729,9 @@ h1 {
   height: 75vh;
   position: relative;
   padding: 40px 40px 60px 40px;
+  transform: scale(0);
+
+  transition: 0.5s ease;
 }
 .close-popup {
   position: relative;
@@ -796,46 +850,14 @@ form input::placeholder {
 }
 
 @media(max-width: 992px) {
-  .burger-menu {
-    width: 45vw;
-    padding: 113px 100px 38px 73px;
-  }
   .menu-list {
     margin-top: 46px;
   }
-  .menu-list li {
-    font-size: 24px;
-    line-height: 32px;
+  .menu-list {
+    display: none;
   }
-  .menu-list li:not(:first-child) {
-    margin-top: 30px;
-  }
-  .menu-footer {
-    margin-top: 250px;
-  }
-  .menu-footer-social {
+  .header-burger {
     display: flex;
-  }
-  .menu-footer-social_vk {
-    width: 60px;
-    height: 60px;
-  }
-  .menu-footer-social_vk img {
-    width: 55px;
-    height: 55px;
-  }
-  .menu-footer-social_youtube {
-    width: 60px;
-    height: 60px;
-    margin-left: 40px;
-  }
-  .menu-footer-social_youtube img {
-    width: 55px;
-    height: 55px;
-  }
-  .menu-footer-lang {
-    font-size: 24px;
-    line-height: 32px;
   }
 
   h1 {
@@ -904,22 +926,25 @@ form input::placeholder {
     position: relative;
     padding: 40px 40px 60px 40px;
   }
+  .burger-menu {  
+    display: flex;
+    transform: translateX(100%);
+
+    transition: 0.5s ease;
+  }
+  .burger-menu.active {  
+    transform: translateX(0);
+  }
+  .teaser-item-release-date {
+    font-size: 27px;
+    line-height: 125%;
+  }
+  .film-item-release-date {
+    font-size: 27px;
+    line-height: 125%;
+  }
 }
 @media(max-width: 768px) {
-  .burger-menu {
-    width: 60vw;
-    padding: 113px 100px 38px 60px;
-  }
-  .menu-list {
-    margin-top: 46px;
-  }
-  .menu-list li {
-    font-size: 20px;
-    line-height: 27px;
-  }
-  .menu-list li:not(:first-child) {
-    margin-top: 20px;
-  }
   .menu-footer {
     margin-top: 200px;
   }
@@ -1001,6 +1026,16 @@ form input::placeholder {
   .main-page-gradient {
     height: 130px;
   }
+  .teaser-item-release-date {
+    top: 30px;
+    font-size: 18px;
+    line-height: 125%;
+  }
+  .film-item-release-date {
+    font-size: 18px;
+    line-height: 125%;
+    bottom: 10px;
+  }
 }
 @media(max-width: 767px) {
   .footer-row {
@@ -1043,58 +1078,10 @@ form input::placeholder {
   }
 }
 @media(max-width: 576px) {
-  .burger-menu {
-    width: 100vw;
-    padding: 50px 40px 40px 40px;
-  }
   .header-burger {
     width: 30px;
     height: 24px;
     margin-left: 15px;
-  }
-  .menu-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 46px;
-  }
-  .menu-list li {
-    text-align: center;
-    font-size: 18px;
-    line-height: 24px;
-  }
-  .menu-footer {
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px;
-  }
-  .menu-footer-social {
-    display: flex;
-    order: 2;
-    margin-top: 40px;
-  }
-  .menu-footer-social_vk {
-    width: 60px;
-    height: 60px;
-  }
-  .menu-footer-social_vk img {
-    width: 55px;
-    height: 55px;
-  }
-  .menu-footer-social_youtube {
-    width: 60px;
-    height: 60px;
-    margin-left: 40px;
-  }
-  .menu-footer-social_youtube img {
-    width: 55px;
-    height: 55px;
-  }
-  .menu-footer-lang {
-    order: 1;
-    font-size: 18px;
-    line-height: 24px;
   }
   h1 {
     font-size: 40px;
@@ -1191,6 +1178,9 @@ form input::placeholder {
     top: 25px;
     right: 15px;
 }
+.new-text {
+  margin-left: 0;
+}
 .popup-btn {
   width: 260px;
   margin: 0 auto;
@@ -1202,6 +1192,44 @@ form input {
 form input::placeholder {
   font-size: 16px;
   line-height: 20px;
+}
+.video-row {
+  grid-template-columns: 1fr;
+  column-gap: 0;
+}
+.burger-menu-list li {
+  font-size: 20px;
+  line-height: 110%;
+}
+.menu-footer-social_vk {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  width: 55px;
+  height: 55px;
+  transition: 0.5s ease;
+}
+.menu-footer-social_vk img {
+  width: 45px;
+  height: 45px;
+}
+.menu-footer-social_youtube {
+  width: 55px;
+  height: 55px;
+}
+.menu-footer-social_youtube img {
+  width: 45px;
+  height: 45px;
+}
+.teaser-item-release-date {
+  top: 40px;
+  font-size: 14px;
+}
+.film-item-release-date {
+  font-size: 14px;
+  bottom: 10px;
 }
 }
 
@@ -1218,13 +1246,5 @@ form input::placeholder {
     margin-top: 20px;
     font-size: 18px;
     line-height: 24px;
-  }
-  .burger-menu {
-    width: 100vw;
-    padding: 40px 30px 30px 30px;
-  }
-  .header-burger {
-    width: 28px;
-    height: 24px;
   }
 }
