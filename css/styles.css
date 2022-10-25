@@ -491,6 +491,7 @@ h1 {
   align-items: center;
   justify-content: center;
   transition: 0.5s ease;
+  text-align: center;
 }
 .btn:hover {
   border: 1px solid transparent;
@@ -513,6 +514,10 @@ h1 {
 }
 .book-btn:not(:first-child) {
   margin-top: 46px;
+}
+.book-btn.disabled {
+  pointer-events: none;
+  filter: grayscale(1);
 }
 .book-image {
   flex: 1 0 50%;
