@@ -36,7 +36,7 @@
       <header class="header lock-padding">
         <div class="container">
           <div class="header-container">
-            <a href="#" class="header-lang-link">
+            <a href="https://знаменосец.com/eng.html" class="header-lang-link">
               ENG
             </a>
             <ul class="menu-list">
@@ -120,7 +120,7 @@
               <a href="https://www.youtube.com/watch?v=rzPM5ek5-pU&ab_channel=%D0%97%D0%9D%D0%90%D0%9C%D0%95%D0%9D%D0%9E%D0%A1%D0%95%D0%A6." class="film-item available" target="_blank">
                 <img src="./img/teas-covers/img2.jpg" alt="img">
               </a>
-              <a href="#" class="film-item" target="_blank">
+              <a href="https://www.youtube.com/watch?v=0LZNsyNN3fY&ab_channel=%D0%97%D0%9D%D0%90%D0%9C%D0%95%D0%9D%D0%9E%D0%A1%D0%95%D0%A6." class="film-item available" target="_blank">
                 <img src="./img/teas-covers/img3.jpg" alt="img">
               </a>
               <a href="#" class="film-item" target="_blank">
@@ -416,16 +416,19 @@
               Партнерские проекты.
           </div>
           <div class="video-row">
-            <a href="https://youtube.com/" class="film-item available" target="_blank">
+            <a href="#" class="film-item" target="_blank">
               <img src="./img/new/picture1.jpg" alt="img">
+              <div class="film-item-release-date">
+                Встречайте скоро
+              </div>
             </a>
-            <a href="https://youtube.com/" class="film-item" target="_blank">
+            <a href="#" class="film-item" target="_blank">
               <img src="./img/new/picture1.jpg" alt="img">
               <div class="film-item-release-date">
                   Встречайте скоро
                 </div>
             </a>
-            <a href="https://youtube.com/" class="film-item" target="_blank">
+            <a href="#" class="film-item" target="_blank">
               <img src="./img/new/picture1.jpg" alt="img">
               <div class="film-item-release-date">
                 Встречайте скоро
@@ -502,10 +505,10 @@
               Мы открыты обсудить другие условия сотрудничества.
               Поддержите нас и пишите нам!
             </p>
-            <form action="" class="popup-form">
-              <input type="email" placeholder="Введите e-mail">
-              <input type="text" placeholder="Введите название фильма">
-              <button class="popup-btn btn">Поддержать</button>
+            <form action="sender.php" method="post" class="popup-form">
+              <input type="email" placeholder="Введите e-mail" name="email" required>
+              <input type="text" name="name" placeholder="Введите название фильма" required>
+              <button type="button" class="send-form popup-btn btn">Поддержать</button>
             </form>
           </div>
         </div>
@@ -513,6 +516,8 @@
     </div>
   </div>
 
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="./js/jquery.validate.min.js"></script>
   <script src="./js/script.js"></script>
 </body>
 </html>

@@ -140,3 +140,38 @@ footerUkScroll.forEach(btn => {
     ukWar.scrollIntoView({block: "start", behavior: "smooth"});
 });
 })
+
+
+// Mailer
+
+
+jQuery(document).ready(function () {
+     
+  jQuery('.send-form').click( function() {
+    var form = jQuery(this).closest('form');
+    
+    if ( form.valid() ) {
+      form.css('opacity','.5');
+      var actUrl = form.attr('action');
+ 
+      jQuery.ajax({
+        url: actUrl,
+        type: 'post',
+        dataType: 'html',
+        data: form.serialize(),
+        success: function(data) {
+          form.html(data);
+          form.css('opacity','1');
+            var url = "https://vk.com/donut/public214355387";
+            $(location).attr('href',url);
+        },
+        error:	 function() {
+             console.log('Возникла какая-то ошибка')
+        }
+      });
+    }
+  });
+ 
+ 
+ });
+

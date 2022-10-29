@@ -57,6 +57,9 @@ li {
 .uk-war {
   position: relative;
 }
+.eng-uk-war {
+  padding-top: 120px;
+}
 .uk-war .gradient-circle {
   top: 0;
   left: 0;
@@ -852,6 +855,17 @@ form input::placeholder {
   outline: none;
 }
 .btn {
+}
+form input.error{
+  border-bottom: 1px solid #FF2B0D;
+}
+label.error {
+  display: none !important;
+}
+.form-notification {
+  margin-top: 20px;
+  text-align: center;
+  color: var(--yellow);
 }
 
 @media(max-width: 992px) {
