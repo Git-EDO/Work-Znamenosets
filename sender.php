@@ -1,16 +1,17 @@
 <?php
-    $email = $_POST['email'];
     $name = $_POST['name'];
+    $email = $_POST['email'];
 
-		$to = "demonex@bk.ru";
-		$date = date ("d.m.Y");
-		$time = date ("h:i");
-		$from = "info@знаменосец.com";
-		$subject = "Заявка c сайта";
+	$to = "vladimirshirogorov1@gmail.com";
+	$date = date ("d.m.Y");
+	$time = date ("h:i");
+	$from = "info@znamenosets.com";
+	$subject = "Заявка c сайта";
+
 	
-		$msg="
+	$msg="
     Имя: $name \n
-    Почта: $email"; 	
+    Почта: $email \n"; 	
 	mail($to, $subject, $msg, "From: $from ");
 
 ?>

@@ -145,6 +145,7 @@ footerUkScroll.forEach(btn => {
 // Mailer
 
 
+
 jQuery(document).ready(function () {
      
   jQuery('.send-form').click( function() {
@@ -162,11 +163,12 @@ jQuery(document).ready(function () {
         success: function(data) {
           form.html(data);
           form.css('opacity','1');
+                  //form.find('.status').html('форма отправлена успешно');
             var url = "https://vk.com/donut/public214355387";
             $(location).attr('href',url);
         },
         error:	 function() {
-             console.log('Возникла какая-то ошибка')
+             form.find('.status').html('серверная ошибка');
         }
       });
     }
@@ -174,4 +176,3 @@ jQuery(document).ready(function () {
  
  
  });
-
